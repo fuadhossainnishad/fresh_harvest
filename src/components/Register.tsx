@@ -8,7 +8,7 @@ export default function Register() {
   const [formData, setFormData] = useState({fullName:"", email: "", password: "" });
     const [msg,setMsg]=useState("")
   
-    const handleChange=(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){
+    const handleChange=(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
       setFormData({...formData,[e.target.name]:[e.target.value]})
     }
   
@@ -17,8 +17,10 @@ export default function Register() {
       try {
         const res=await client.post("users/register",formData)
         setMsg(res.data.message)
+        console.log(msg)
       }catch(error){
         setMsg("User registration not done yet")
+        console.log(error)
       }
     };
   return (

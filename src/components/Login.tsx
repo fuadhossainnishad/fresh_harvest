@@ -2,13 +2,13 @@
 import { client } from "@/lib/client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { TextareaHTMLAttributes, useState } from "react";
+import React, { useState } from "react";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [msg,setMsg]=useState("")
 
-  const handleChange=(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){
+  const handleChange=(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
     setFormData({...formData,[e.target.name]:[e.target.value]})
   }
 
@@ -17,8 +17,10 @@ export default function Login() {
     try {
       const res=await client.post("auth/login",formData)
       setMsg(res.data.message)
+      console.log(msg)
     }catch(error){
       setMsg("Login data is not correct")
+      console.log(error)
     }
   };
 
