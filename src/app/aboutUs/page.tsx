@@ -1,27 +1,30 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function AboutUs() {
   return (
     <main
-      className="flex items-center px[120px]
+      className="space-y-20 flex gap-24 px-[120px] pt-20 bg-white justify-center items-center
     "
     >
-      <section className="">
+      <section className="w-[53%]">
         <Image
-          src="/images/aboutus.png"
+          src="/icons/about.svg"
           alt="offer"
-          width={700}
+          width={400}
           height={570}
           priority
           unoptimized
-          className="h-auto w-full object-cover"
+          className="w-full h-full"
         />
       </section>
-      <section className="text-wrap">
-        <h1 className="texttclr/10 px-8 py-4 text-sm text-center">About us</h1>
-        <h2 className="">About Fresh Harvest</h2>
-        <p className="">
+      <section className="text-wrap space-y-5 w-[40%]">
+        <h1 className="text-xl font-medium p-1 px-3 w-fit rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
+          About us
+        </h1>
+        <p className="text-5xl font-medium w-fit">About Fresh Harvest</p>
+        <p className="text-base font-normal text-wrap ">
           Welcome to Fresh Harvest, your premier destination for high-quality
           and fresh produce. We are passionate about providing you with the
           finest fruits, vegetables, and salad ingredients to nourish your body
@@ -29,9 +32,12 @@ export default function AboutUs() {
           sustainability, and customer satisfaction, Fresh Harvest is here to
           revolutionize your grocery shopping experience.
         </p>
-        <button className="texttclr px-8 py-4 text-sm text-center">
-          Ream More
-        </button>
+        <Link
+          href=""
+          className="block px-8 py-4 text-lg textclr font-semibold rounded-lg border-[1px] border-[#ff6a1a] max-w-fit"
+        >
+          See All Products
+        </Link>
       </section>
     </main>
   );

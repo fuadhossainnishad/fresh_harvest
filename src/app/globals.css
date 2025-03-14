@@ -41,7 +41,37 @@ body {
   background-repeat: no-repeat, no-repeat;
   background-size: 30% 100%, 70% 100%;
   background-color: #749b3f;
+}
+/* .offerbg {
+  position: relative;
+  color: black; /* Ensure text color is visible */
+ */
 
+.offerbg {
+
+  background-image: url("/images/bg2.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* -webkit-mask-image: url("/icons/bg.svg"), url("/icons/bg2.svg");
+  mask-image: url("/icons/bg.svg"), url("/icons/bg2.svg");
+
+  -webkit-mask-size: auto;
+  mask-size: auto;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-position: left bottom, right top;
+  mask-position: left bottom, right top;
+
+  z-index: -1; */
 }
 
-
+.testbg{
+  
+  background-image: url("/images/test.png");
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

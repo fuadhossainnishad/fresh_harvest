@@ -2,32 +2,35 @@
 // import Register from "@/components/Register";
 import React from "react";
 import Image from "next/image";
+import Download from "@/ui/Download";
 
 export default function Hero() {
   return (
-    <main className="bgimageadjust h-screen px-[120px] py-[180px] relative overflow-hidden">
-      <section className="absolute -right-40 bottom-0  w-[1500px] h-[900px]">
-          <Image
-            src="/images/cover.png"
-            alt="cover"
-            height={750}
-            width={680}
-            unoptimized
-            priority
-            className="object-cover object-top w-full h-full"
-          />
-        </section>
+    <main className="bgimageadjust  px-[120px] pt-[180px] relative pb-10 w-full z-20">
+      <section className="absolute -right-40 bottom-0  w-auto h-full">
+        <Image
+          src="/images/cover.png"
+          alt="cover"
+          height={900}
+          width={680}
+          unoptimized
+          priority
+          className=" object-cover w-full h-full"
+        />
+      </section>
       <section className="">
         <section className="max-w-1/2 space-y-4">
-          <h1 className=" text-xl p-1 px-3 bg-[#749B3F]/10 text-[#749B3F] leading-1.5 w-fit rounded-lg ">
+          <h1 className=" text-xl py-1 px-3 bg-[#749B3F]/10 text-[#749B3F]  w-fit rounded-lg ">
             Welcome to Fresh Harvest
           </h1>
-          <h1 className="text-wrap font-medium text-[#212337] text-[100px]">Fresh Fruits and Vegetables</h1>
+          <h1 className="text-wrap font-medium text-[#212337] text-[100px]">
+            Fresh Fruits and Vegetables
+          </h1>
           <h1 className="text-lg font-normal text-wrap ">
             At Fresh Harvests, we are passionate about providing you with the
             freshest and most flavorful fruits and vegetables
           </h1>
-          <button className="btnclr text-white text-lg font-semibold py-4 px-8 rounded-[8px]">
+          <button className="btnclr z-50 cursor-pointer text-white text-lg font-semibold py-4 px-8 rounded-[8px]">
             Shop Now
           </button>
         </section>
@@ -43,13 +46,16 @@ export default function Hero() {
           />
           <Image
             src="/images/offer.png"
-            alt="arrow"
+            alt="offer"
             width={50}
             height={50}
             unoptimized
             priority
-            className="object-cover h-auto w-[35%]"
+            className="object-cover h-auto w-[34%] ml-6"
           />
+        </div>
+        <div className="mt-5">
+          <Download />
         </div>
       </section>
     </main>

@@ -6,7 +6,7 @@ import { Navs } from "./Header";
 
 export default function Footer() {
   return (
-    <footer className="px-[120px] bg-[F4F6F6] pt-16 pb-6 space-y-8">
+    <footer className="px-[120px] bg-[#F4F6F6] pt-16 pb-6 space-y-8">
       <section className="flex justify-between">
         <section className="flex flex-col justify-between w-fit">
           <div className="flex items-center gap-1">

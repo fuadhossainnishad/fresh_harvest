@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-arp>
-      <body className={`${rubik.className}  antialiased`}>
+      <body className={`${rubik.className}  antialiased overflow-x-hidden`}>
         <Header />
         {children}
         <Footer />

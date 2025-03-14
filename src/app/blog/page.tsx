@@ -3,22 +3,22 @@ import Image from "next/image";
 
 export default function Blog() {
   return (
-    <main className="w-full text-center px-[120px] bg-white">
-      <h1 className="">Our Blog</h1>
-
-      <div className="max-w-fit inline-block text-center text-wrap">
-        <h1 className="text-5xl">Fresh Harvest Blog</h1>
-        <h1 className="text-sm whitespace-nowrap">
+    <main className="pt-20 pb-40 w-full flex flex-col items-center gap-10 text-center px-[120px] bg-white">
+      <div className="w-full flex flex-col items-center gap-4">
+        <h1 className="text-xl font-medium p-1 px-3 w-fit rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
+          Our Blog
+        </h1>
+        <h1 className="text-5xl font-medium">Fresh Harvest Blog</h1>
+        <h1 className="text-sm text-wrap w-[26%]">
           Welcome to the Fresh Harvest Blog, your go-to resource for all things
           related to fresh produce, healthy eating, and culinary inspiration.
         </h1>
       </div>
       <div className="grid grid-cols-3 gap-10">
-      <Contents />
-      <Contents />
-      <Contents />
+        <Contents />
+        <Contents />
+        <Contents />
       </div>
-     
     </main>
   );
 }
@@ -26,7 +26,7 @@ export default function Blog() {
 export function Contents() {
   return (
     <main className="text-start text-lg ">
-      <section>
+      <section className="space-y-3">
         <Image
           src="/images/blog.png"
           alt=""
@@ -36,7 +36,7 @@ export function Contents() {
           priority
           className="object-cover h-auto w-auto rounded-3xl"
         />
-        <h1 className="font-normal">Date</h1>
+        <h1 className="font-normal">Dec 12,2025</h1>
         <h1 className="font-medium">
           Exploring Seasonal Delights: A Guide to What&apos;s Fresh Right Now
         </h1>
