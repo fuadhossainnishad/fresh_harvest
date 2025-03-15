@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Download from "../ui/Download";
 import QuickLinks from "@/ui/QuickLinks";
-import { Navbars } from "./Header";
+// import { Navbars } from "./Header";
 
 export default function Footer() {
   const QuickLinks1 = [

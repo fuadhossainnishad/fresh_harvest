@@ -1,13 +1,11 @@
 "use client";
 import { client } from "@/lib/client";
-import { ProductsInterface, setProduct } from "@/store/productSlice";
+import {  setProduct } from "@/store/productSlice";
 import { RootState } from "@/store/store";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Use next/navigation for better navigation hooks
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
-import { dummydata } from '../store/productSlice';
 
 export default function Products() {
   // const router = useRouter();
@@ -45,7 +43,7 @@ export default function Products() {
       }
     };
     handleProducts();
-  }, [dummydata]);
+  }, [dispatch]);
 
   return (
     <main className="flex flex-col items-center space-y-8 bg-white px-[120px]">

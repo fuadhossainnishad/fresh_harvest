@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
 export default function Header() {
-  const [signin, setSignin] = useState(false);
+  // const [signin, setSignin] = useState(false);
 
-  const handleSignIn = () => {
-    setSignin(true);
-  };
+  // const handleSignIn = () => {
+  //   setSignin(true);
+  // };
   return (
     <header className="fixed  w-full px-[120px] py-[30px] left-0 right-0 top-0 z-50">
       <main className="flex justify-between w-full z-10">
@@ -55,8 +55,8 @@ export default function Header() {
             Cart
           </div>
           <div
-            onClick={handleSignIn}
-            className="px-6 py-3 border-0 border-white rounded-sm  "
+            // onClick={}
+            className="px-6 py-3 border-0 border-white rounded-sm cursor-pointer "
           >
             Sign in
           </div>
