@@ -1,10 +1,16 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 export default function Header() {
+  const [signin, setSignin] = useState(false);
+
+  const handleSignIn = () => {
+    setSignin(true);
+  };
   return (
-    <header className=" fixed w-full px-[120px] py-[30px] inset-0 z-30">
+    <header className="fixed  w-full px-[120px] py-[30px] left-0 right-0 top-0 z-50">
       <main className="flex justify-between w-full z-10">
         <section className="flex items-center gap-1">
           <Image
@@ -17,7 +23,7 @@ export default function Header() {
           <p>Fresh Harvests</p>
         </section>
         <section className="flex leading-6 justify-between items-center gap-16 text-base text-wrap">
-          {Navs.map((nav, i) => (
+          {Navbars.map((nav, i) => (
             <Link href={nav.path} key={i} className="">
               {nav.name}
             </Link>
@@ -48,7 +54,10 @@ export default function Header() {
             />
             Cart
           </div>
-          <div className="px-6 py-3 border-0 border-white rounded-sm  ">
+          <div
+            onClick={handleSignIn}
+            className="px-6 py-3 border-0 border-white rounded-sm  "
+          >
             Sign in
           </div>
         </section>
@@ -57,7 +66,7 @@ export default function Header() {
   );
 }
 
-export const Navs = [
+export const Navbars:{ name: string; path: string }[] = [
   { name: "Home", path: "/" },
   { name: "Shop", path: "/shop" },
   { name: "About us", path: "/aboutUs" },

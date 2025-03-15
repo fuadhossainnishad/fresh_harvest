@@ -3,6 +3,7 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StoreProvider from "../store/StoreProvider";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -31,11 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-arp>
+    <html lang="en" >
       <body className={`${rubik.className}  antialiased overflow-x-hidden`}>
-        <Header />
-        {children}
-        <Footer />
+        <StoreProvider>
+          <Header />
+          {children}
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

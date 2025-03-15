@@ -6,8 +6,8 @@ import Download from "@/ui/Download";
 
 export default function Hero() {
   return (
-    <main className="bgimageadjust  px-[120px] pt-[180px] relative pb-10 w-full z-20">
-      <section className="absolute -right-40 bottom-0  w-auto h-full">
+    <main className="bgimageadjust  px-[120px] pt-[180px] relative pb-10 w-full">
+      <div className="absolute -right-40 bottom-0  w-auto h-full">
         <Image
           src="/images/cover.png"
           alt="cover"
@@ -17,7 +17,7 @@ export default function Hero() {
           priority
           className=" object-cover w-full h-full"
         />
-      </section>
+      </div>
       <section className="">
         <section className="max-w-1/2 space-y-4">
           <h1 className=" text-xl py-1 px-3 bg-[#749B3F]/10 text-[#749B3F]  w-fit rounded-lg ">
@@ -30,7 +30,7 @@ export default function Hero() {
             At Fresh Harvests, we are passionate about providing you with the
             freshest and most flavorful fruits and vegetables
           </h1>
-          <button className="btnclr z-50 cursor-pointer text-white text-lg font-semibold py-4 px-8 rounded-[8px]">
+          <button className="btnclr cursor-pointer text-white text-lg font-semibold py-4 px-8 rounded-[8px]">
             Shop Now
           </button>
         </section>

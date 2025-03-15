@@ -2,9 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Download from "../ui/Download";
 import QuickLinks from "@/ui/QuickLinks";
-import { Navs } from "./Header";
+import { Navbars } from "./Header";
 
 export default function Footer() {
+  const QuickLinks1 = [
+    { name: "Home", path: "/" },
+    { name: "Shop", path: "/shop" },
+    { name: "About us", path: "/aboutUs" },
+    { name: "Blog", path: "/blog" },
+    { name: "Detail Blog", path: "/detailBlog" },
+  ];
   return (
     <footer className="px-[120px] bg-[#F4F6F6] pt-16 pb-6 space-y-8">
       <section className="flex justify-between">
@@ -22,10 +29,7 @@ export default function Footer() {
           </div>
           <Download />
         </section>
-        <QuickLinks
-          text="Quick Links 1"
-          navs={[...Navs, { name: "Detail Blog", path: "/detailBlog" }]}
-        />
+        <QuickLinks text="Quick Links 1" navs={QuickLinks1} />
         <QuickLinks text="Quick Links 2" navs={QuickLnks2} />
         <section className="flex flex-col space-y-3">
           <h1>Contact us</h1>
