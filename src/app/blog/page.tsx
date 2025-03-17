@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Blog() {
   return (
-    <main className="pt-20 pb-40 w-full flex flex-col items-center gap-10 text-center px-[120px] bg-white">
+    <main className="pt-20 pb-40 w-full flex flex-col items-center gap-10 text-center px-[12px] lg:px-[120px] bg-white">
       <div className="w-full flex flex-col items-center gap-4">
         <h1 className="text-xl font-medium p-1 px-3 w-fit rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
           Our Blog

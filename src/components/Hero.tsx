@@ -6,8 +6,8 @@ import Download from "@/ui/Download";
 
 export default function Hero() {
   return (
-    <main className="bgimageadjust  px-[120px] pt-[180px] relative pb-10 w-full">
-      <div className="absolute -right-40 bottom-0  w-auto h-full">
+    <main className="bgimageadjust px-[12px] lg:px-[120px] pt-[180px] relative pb-10 w-full">
+      <div className="absolute -right-40 bottom-0  w-auto h-full flex items-end">
         <Image
           src="/images/cover.png"
           alt="cover"
@@ -15,15 +15,15 @@ export default function Hero() {
           width={680}
           unoptimized
           priority
-          className=" object-cover w-full h-full"
+          className=" object-cover w-full h-1/2 sm:h-2/3 md:h-full"
         />
       </div>
-      <section className="">
-        <section className="max-w-1/2 space-y-4">
-          <h1 className=" text-xl py-1 px-3 bg-[#749B3F]/10 text-[#749B3F]  w-fit rounded-lg ">
+      <section className="relative z-10">
+        <section className="max-w-1/2 md:max-w-1/2 space-y-4">
+          <h1 className="text-xl lg:text-xl py-1 px-3 bg-[#749B3F]/10 text-[#749B3F]  w-fit rounded-lg ">
             Welcome to Fresh Harvest
           </h1>
-          <h1 className="text-wrap font-medium text-[#212337] text-[100px]">
+          <h1 className="text-wrap font-medium text-[#212337] text-5xl lg:text-[100px]">
             Fresh Fruits and Vegetables
           </h1>
           <h1 className="text-lg font-normal text-wrap ">

@@ -5,7 +5,7 @@ import React from "react";
 export default function AboutUs() {
   return (
     <main
-      className="space-y-20 flex gap-24 px-[120px] pt-20 bg-white justify-center items-center
+      className="space-y-20 flex gap-24 px-[12px] lg:px-[120px] pt-20 bg-white justify-center items-center
     "
     >
       <section className="w-[53%]">

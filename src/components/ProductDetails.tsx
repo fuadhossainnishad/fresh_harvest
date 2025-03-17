@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function ProductDetails() {
   return (
-    <main className="px-[120px] bg-white">
+    <main className="px-[12px] lg:px-[120px] bg-white">
       <section className="flex gap-12  w-full">
         <section className="w-1/2 h-auto border-[1px] border-white rounded-xl flex items-center justify-center ">
           <Image

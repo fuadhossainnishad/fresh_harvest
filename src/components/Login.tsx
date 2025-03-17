@@ -1,76 +1,153 @@
-'use client'
+"use client";
 import { client } from "@/lib/client";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-export default function Login() {
+export default function Login({ setSignIn, setRegister }: { setSignIn: React.Dispatch<React.SetStateAction<boolean>>, setRegister: React.Dispatch<React.SetStateAction<boolean>> }) {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [msg,setMsg]=useState("")
+  const [msg, setMsg] = useState<string>("");
+  const [view, setview] = useState<boolean>(false);
+  const [remembered, setremembered] = useState<boolean>(false);
 
-  const handleChange=(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
-    setFormData({...formData,[e.target.name]:[e.target.value]})
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: [e.target.value] });
+  };
 
-  const handleLogin =async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      const res=await client.post("auth/login",formData)
-      setMsg(res.data.message)
-      console.log(msg)
-    }catch(error){
-      setMsg("Login data is not correct")
-      console.log(error)
+      const res = await client.post("auth/login", formData);
+      setMsg(res.data.message);
+      console.log(msg);
+    } catch (error) {
+      setMsg("Login data is not correct");
+      console.log(error);
     }
   };
 
   return (
-    <main className="bg-white text-black">
-      <p className="text-center">Login</p>
-      <form onSubmit={handleLogin}>
-        <div className="flex flex-col">
-          <label htmlFor="email" className="">
-            Email
-          </label>
-          <input type="text" id="email" name="email" value={formData.email} onChange={handleChange}/>
+    <main className="bg-black/36 text-black absolute w-full -mt-[30px] h-screen flex justify-center items-center">
+      <section className=" bg-white w-[90%] sm:w-[70%] md:w-[55%] lg:w-[45%] xl:w-1/3  p-10 space-y-6">
+        <div onClick={() => setSignIn(false)} className="cursor-pointer flex justify-end">
+          <Image src='/icons/cross.svg' alt="cross" width={15} height={15} unoptimized priority className="" />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="password" className="">
-            Password
-          </label>
-          <input type="password" id="password" name="password" value={formData.password} onChange={handleChange}/>
-        </div>
-        <div className="flex justify-between">
-          <div className="flex">
-            <Image src="" alt="" height={10} width={10}></Image>
-            <p className="">Remember me</p>
+        <p className="text-center text-4xl font-semibold">Login</p>
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div className="flex flex-col gap-2 ">
+            <label htmlFor="email" className="">
+              Email
+            </label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={formData.email}
+              placeholder="Enter your email"
+              onChange={handleChange}
+              className="text-[#a6a6a6] border-[1px] border-[#d9d9d9] rounded-lg p-4 grow appearance-none focus:outline-none"
+            />
           </div>
-          <div className="underline">Forgot Password</div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="password" className="">
+              Password
+            </label>
+            <div className="flex justify-between items-center border-[1px] p-4 border-[#d9d9d9] rounded-lg">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
+                className="text-[#a6a6a6]  grow appearance-none focus:outline-none"
+              />
+              {view ? (
+                <Image
+                  src="/icons/view.svg"
+                  alt="not view"
+                  width={20}
+                  height={20}
+                  unoptimized
+                  priority
+                  onClick={() => setview(!view)}
+                  className="cursor-pointer "
+                />
+              ) : (
+                <Image
+                  src="/icons/view2.svg"
+                  alt="not view"
+                  width={20}
+                  height={20}
+                  unoptimized
+                  priority
+                  onClick={() => setview(!view)}
+                  className="cursor-pointer"
+                />
+              )}
+            </div>
+          </div>
+          <div className="flex justify-between">
+            <div className="flex cursor-pointer gap-2" onClick={() => setremembered(!remembered)}>
+              {remembered ? (
+                <Image
+                  src="/icons/ok.svg"
+                  alt="remembered"
+                  height={20}
+                  width={20}
+
+                />
+              ) : (
+                <Image
+                  src="/icons/ok2.svg"
+                  alt="remembered"
+                  height={20}
+                  width={20}
+
+                />
+              )}
+              <p className="">Remember me</p>
+            </div>
+            <Link href=''>
+              <div className="underline cursor-pointer">Forgot Password</div>
+            </Link>
+          </div>
+          <button type="submit" className="cursor-pointer text-center w-full bg-[#FF6A1A] rounded-lg py-4">
+            Login
+          </button>
+        </form>
+        <div className="text-center flex items-center">
+          <div className="w-auto grow bg-[#d9d9d9] h-[1px]"></div>
+          <p className="text-center w-fit px-2">Or Sign in with</p>{" "}
+          <div className="w-auto grow bg-[#d9d9d9] h-[1px]"></div>
         </div>
-        <button type="submit" className="text-center w-full bg-[#FF6A1A] ">
-          Login
-        </button>
-      </form>
-      <div className="relative text-center">
-        <p className="text-center absolute w-full">Or Sign in with</p>{" "}
-        <div className="w-full bg-black h-0.5"></div>
-      </div>
-      <section className="flex justify-center">
-        <div className="flex place-content-center">
-          <Image src="" alt="" width={10} height={10} />
-          Google
-        </div>
-        <div className="flex place-content-center">
-          <Image src="" alt="" width={10} height={10} />
-          Facebook
+        <section className="flex justify-between gap-4">
+          <div className="cursor-pointer grow px-5 py-3 flex place-content-center gap-3 rounded-lg border-[1px] border-[#d9d9d9]">
+            <Image
+              src="/icons/google.svg"
+              alt="google"
+              width={20}
+              height={20}
+              onClick={() => setremembered(!remembered)}
+              className="text-lg font-semibold"
+            />
+            Google
+          </div>
+          <div className="cursor-pointer grow px-5 py-3 flex place-content-center gap-3 rounded-lg border-[1px] border-[#d9d9d9]">
+            <Image src="/icons/fb.svg" alt="fb" width={20} height={20} onClick={() => setremembered(!remembered)}
+              className="text-lg font-semibold" />
+            Facebook
+          </div>
+        </section>
+        <div className="text-center">
+          Don&apos;t have an account?
+          <span onClick={() => { setRegister(true); setSignIn(false) }} className="cursor-pointer text-[#FF6A1A] ">
+            Sign up
+          </span>
         </div>
       </section>
-      <div className="text-center">
-        Don&apos;t have an account?
-        <Link href="" className="text-[#FF6A1A] ">
-          Sign up
-        </Link>
-      </div>
     </main>
   );
 }

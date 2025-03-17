@@ -17,7 +17,7 @@ export default function Offer() {
           className="object-cover h-full w-full"
         />
       </div>
-      <section className="space-y-8 px-[120px] py-[90px] ">
+      <section className="space-y-8 px-[12px] lg:px-[120px] py-[90px] ">
         <div className="text-xl font-medium p-1 px-3 w-fit rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
           Special Offer
         </div>

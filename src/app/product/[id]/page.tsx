@@ -1,13 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { ProductsInterface } from "@/store/productSlice";
 import { client } from "@/lib/client";
-import Products from '../../../components/Products';
+import Products from "../../../components/Products";
 
 export default function ProductDetails() {
   const { id } = useParams();
+  const fetched = useRef(false);
 
   const [productDetails, setProductDetails] = useState<ProductsInterface>({
     id: "",
@@ -23,6 +24,8 @@ export default function ProductDetails() {
     updatedAt: new Date(),
   });
   useEffect(() => {
+    if (!id || fetched.current) return;
+    fetched.current = true;
     const handleProducts = async () => {
       try {
         const res = await client.get(`/products/${id}`);
@@ -36,9 +39,9 @@ export default function ProductDetails() {
   }, [id]);
 
   return (
-    <main className="px-[120px] bg-white py-40 space-y-10 h-full">
+    <main className="px-[12px] lg:px-[120px] bg-white py-40 space-y-10 h-full">
       <section className="flex gap-24 w-full justify-between h-full">
-        <section className="w-[800px] h-[700px] rounded-lg border-[1px] border-black/10 flex items-center justify-center">
+        <section className="lg:w-[800px] lg:h-[700px] rounded-lg border-[1px] border-black/10 flex items-center justify-center">
           <Image
             src="/images/veg.png"
             alt=""
@@ -49,7 +52,7 @@ export default function ProductDetails() {
             className="object-cover object-center  h-full "
           />
         </section>
-        <section className="w-1/2 space-y-24 flex flex-col justify-between">
+        <section className="w-1/2 space-y-12 lg:space-y-24 flex flex-col justify-between">
           <div className="space-y-4">
             <h1 className="text-xl font-medium p-1 px-3 w-fit rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
               {productDetails.categoryId}
@@ -125,7 +128,7 @@ export default function ProductDetails() {
           taste...
         </div>
       </section>
-      <Products/>
+      <Products />
     </main>
   );
 }

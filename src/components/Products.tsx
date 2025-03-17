@@ -1,6 +1,6 @@
 "use client";
 import { client } from "@/lib/client";
-import {  setProduct } from "@/store/productSlice";
+import { setProduct } from "@/store/productSlice";
 import { RootState } from "@/store/store";
 import Image from "next/image";
 import React, { useEffect } from "react";
@@ -46,15 +46,15 @@ export default function Products() {
   }, [dispatch]);
 
   return (
-    <main className="flex flex-col items-center space-y-8 bg-white px-[120px]">
+    <main className="flex flex-col items-center space-y-8 bg-white px-[12px] lg:px-[120px]">
       <section className="w-full flex flex-col items-center pt-36 space-y-4">
-        <h1 className="text-center text-xl self-center font-medium p-1 px-3 rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
+        <h1 className="text-center text-sm md:text-xl self-center font-medium p-1 px-3 rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
           Our Products
         </h1>
-        <h1 className="text-center text-5xl self-center font-medium ">
+        <h1 className="text-center text-3xl md:text-5xl self-center font-medium ">
           Our Fresh Products
         </h1>
-        <h1 className="text-center text-sm self-center text-wrap font-normal w-1/4">
+        <h1 className="text-center text-[12px] md:text-sm self-center text-wrap font-normal w-1/2 md:w-1/4">
           We pride ourselves on offering a wide variety of fresh and flavorful
           fruits, vegetables, and salad ingredients.
         </h1>
