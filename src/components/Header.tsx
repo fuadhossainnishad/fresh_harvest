@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 import { usePathname } from "next/navigation";
@@ -13,18 +13,37 @@ export default function Header() {
   const [scroll, setScroll] = useState<boolean>(false)
   const pathname = usePathname()
 
-  if (typeof window !== undefined) {
-    if (pathname !== '/') {
-      window.onscroll = () => {
-        setScroll(window.scrollY > 50)
-      }
-    } else {
-      window.onscroll = () => {
-        setScroll(window.scrollY > 700)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== undefined) {
+        if (pathname !== '/') {
+          window.onscroll = () => {
+            setScroll(window.scrollY > 50)
+          }
+        } else {
+          window.onscroll = () => {
+            setScroll(window.scrollY > 700)
+          }
+        }
       }
     }
+    window.addEventListener("scroll", handleScroll)
 
-  }
+    return () => { window.removeEventListener("scroll", handleScroll) }
+  })
+
+  // if (pathname !== '/') {
+  //   if (scrollref.current) {
+  //     setScroll(scrollref.current.scrollTop > 50)
+  //   }
+  // } else {
+  //   if (scrollref.current) {
+  //     setScroll(scrollref.current.scrollTop > 700)
+  //   }
+  // }
+
+
+  // }
 
   // const handleSignIn = () => {
   //   setSignin(true);
