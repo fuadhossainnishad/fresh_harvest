@@ -11,7 +11,7 @@ import Blog from "./blog/page";
 
 export default function Home() {
   return (
-    <main className="flex flex-col ">
+    <main className="">
       <Hero />
       {/* <ProductDetails/> */}
       <Products />

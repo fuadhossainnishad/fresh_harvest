@@ -4,17 +4,33 @@ import Link from "next/link";
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
+import { usePathname } from "next/navigation";
 // import React, { useState } from "react";
 
 export default function Header() {
   const [signin, setSignin] = useState<boolean>(false);
   const [register, setRegister] = useState<boolean>(false)
+  const [scroll, setScroll] = useState<boolean>(false)
+  const pathname = usePathname()
+
+  if (typeof window !== undefined) {
+    if (pathname !== '/') {
+      window.onscroll = () => {
+        setScroll(window.scrollY > 50)
+      }
+    } else {
+      window.onscroll = () => {
+        setScroll(window.scrollY > 700)
+      }
+    }
+
+  }
 
   // const handleSignIn = () => {
   //   setSignin(true);
   // };
   return (
-    <header className="fixed w-auto px-[12px] lg:px-[120px]  py-[30px] left-0 right-0 top-0 z-50 flex justify-center">
+    <header className={`fixed  w-auto px-[12px] lg:px-[120px]  py-[30px] left-0 right-0 top-0 z-50 flex justify-center ${scroll ? "backdrop-blur-lg bg-blue-500/20" : ""}`}>
       <main className="flex justify-between w-full z-10">
         <section className="flex items-center gap-1">
           <Image
@@ -46,21 +62,24 @@ export default function Header() {
             />
             Favourite
           </div>
-          <div className="flex gap-2 cursor-pointer">
-            <Image
-              src="/icons/cart.svg"
-              alt="cart"
-              width={20}
-              height={20}
-              unoptimized
-              priority
-              className=""
-            />
-            Cart
-          </div>
+          <Link href='/cart'>
+            <div className="flex gap-2 cursor-pointer">
+              <Image
+                src="/icons/cart.svg"
+                alt="cart"
+                width={20}
+                height={20}
+                unoptimized
+                priority
+                className=""
+              />
+              Cart
+            </div>
+          </Link>
+
           <div
             onClick={() => setSignin(!signin)}
-            className="px-6 py-3 border-0 border-white rounded-sm cursor-pointer "
+            className="px-6 py-2 border-[1px] border-white rounded-sm cursor-pointer "
           >
             Sign in
           </div>
@@ -79,7 +98,7 @@ export default function Header() {
 
 export const Navbars: { name: string; path: string }[] = [
   { name: "Home", path: "/" },
-  { name: "Shop", path: "/shop" },
+  { name: "Shop", path: "/product" },
   { name: "About us", path: "/aboutUs" },
   { name: "Blog", path: "/blog" },
 ];

@@ -7,7 +7,7 @@ import QuickLinks from "@/ui/QuickLinks";
 export default function Footer() {
   const QuickLinks1 = [
     { name: "Home", path: "/" },
-    { name: "Shop", path: "/shop" },
+    { name: "Shop", path: "/product" },
     { name: "About us", path: "/aboutUs" },
     { name: "Blog", path: "/blog" },
     { name: "Detail Blog", path: "/detailBlog" },
@@ -33,38 +33,38 @@ export default function Footer() {
         <QuickLinks text="Quick Links 2" navs={QuickLnks2} />
         <section className="flex flex-col space-y-3">
           <h1>Contact us</h1>
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             <Image
-              src="/icons/logo.svg"
+              src="/icons/mobile.svg"
               alt="number"
               height={20}
               width={20}
               priority
               className="object-cover"
             />
-            <h1>1234567890</h1>
+            <h1>01627408824</h1>
           </div>
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             <Image
-              src="/icons/logo.svg"
+              src="/icons/mail.svg"
               alt="number"
               height={20}
               width={20}
               priority
               className="object-cover"
             />
-            <h1>FreshHarvest@gmail.com</h1>
+            <h1>fuadhossainb01@gmail.com</h1>
           </div>
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             <Image
-              src="/icons/logo.svg"
+              src="/icons/location.svg"
               alt="number"
               height={20}
               width={20}
               priority
               className="object-cover"
             />
-            <h1>1234567890</h1>
+            <h1>Dhaka,Bangladesh</h1>
           </div>
           <div>
             <h1 className="text-sm font-semibold">Accepted Payment Methods:</h1>
@@ -100,7 +100,7 @@ export default function Footer() {
       <div className="h-0.5 w-full bg-black"></div>
       <section className="flex justify-between">
         <h1 className="text-sm text-wrap">
-          © Copyright 2024, All Rights Reserved by Banana Studio
+          © Copyright 2024, All Rights Reserved by Fuad Hossain & Anidevaura
         </h1>
         <div className="flex gap-3">
           <Image

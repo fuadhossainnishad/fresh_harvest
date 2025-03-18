@@ -1,49 +1,59 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+
+// import React, { useEffect, useRef, useState } from "react";
+// import { ProductsInterface } from "@/store/productSlice";
+// import { client } from "@/lib/client";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { ProductsInterface } from "@/store/productSlice";
-import { client } from "@/lib/client";
 import Products from "../../../components/Products";
+import { useSelector } from "react-redux";
+import { selectProductById } from "@/lib/selectProductById";
+import { RootState } from '../../../store/store';
+import { useState } from "react";
 
 export default function ProductDetails() {
+  const [image, setImage] = useState<number>(0)
   const { id } = useParams();
-  const fetched = useRef(false);
+  const productId = Array.isArray(id) ? id[0] : id?.toString() || ""
+  const product = useSelector((state: RootState) => selectProductById(state, productId))
 
-  const [productDetails, setProductDetails] = useState<ProductsInterface>({
-    id: "",
-    productName: "Coconut",
-    description:
-      "From our farm directly to your door, our fresh coconuts are harvested at the peak of ripeness, offering you a sweet, hydrating treat full of flavor. Packed with natural nutrients, coconut is perfect for a variety of culinary uses, from smoothies to savory dishes, or even for a refreshing drink straight from the shell.",
-    price: 67,
-    stock: 10,
-    images: [],
-    categoryId: "Fruits",
-    isDeleted: false,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
-  useEffect(() => {
-    if (!id || fetched.current) return;
-    fetched.current = true;
-    const handleProducts = async () => {
-      try {
-        const res = await client.get(`/products/${id}`);
-        setProductDetails(res.data);
-      } catch (error) {
-        console.error(error);
-        alert("Failed to fetch products");
-      }
-    };
-    handleProducts();
-  }, [id]);
+  // const fetched = useRef(false);
+  // const [productDetails, setProductDetails] = useState<ProductsInterface>({
+  //   id: "",
+  //   productName: "Coconut",
+  //   description:
+  //     "From our farm directly to your door, our fresh coconuts are harvested at the peak of ripeness, offering you a sweet, hydrating treat full of flavor. Packed with natural nutrients, coconut is perfect for a variety of culinary uses, from smoothies to savory dishes, or even for a refreshing drink straight from the shell.",
+  //   price: 67,
+  //   stock: 10,
+  //   images: [],
+  //   categoryId: "Fruits",
+  //   isDeleted: false,
+  //   createdAt: new Date(),
+  //   updatedAt: new Date(),
+  // });
+  // useEffect(() => {
+  //   if (!id || fetched.current) return;
+  //   fetched.current = true;
+  //   const handleProducts = async () => {
+  //     try {
+  //       const res = await client.get(`/products/${id}`);
+  //       setProductDetails(res.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //       alert("Failed to fetch products");
+  //     }
+  //   };
+  //   handleProducts();
+  // }, [id]);
+
+  if (!product) return <main className="px-[12px] lg:px-[120px] bg-white py-40 space-y-10 h-screen">Loading Product</main>
 
   return (
     <main className="px-[12px] lg:px-[120px] bg-white py-40 space-y-10 h-full">
       <section className="flex gap-24 w-full justify-between h-full">
-        <section className="lg:w-[800px] lg:h-[700px] rounded-lg border-[1px] border-black/10 flex items-center justify-center">
+        <section className="lg:w-[800px] lg:h-[700px] rounded-lg border-[1px] border-black/10 flex flex-col items-center justify-center">
           <Image
-            src="/images/veg.png"
+            src={product?.images[image] || ""}
             alt=""
             height={566}
             width={566}
@@ -51,14 +61,20 @@ export default function ProductDetails() {
             priority
             className="object-cover object-center  h-full "
           />
+          <div className="w-full flex justify-center gap-2 pb-4">
+            {product?.images.map((_, i) => (
+              <div key={i} onClick={() => setImage(i)} className={`cursor-pointer rounded-full h-3 w-3 ${image === i ? "bg-[#749b3f]" : "bg-[#d9d9d9]"} `}></div>
+            ))}
+          </div>
+
         </section>
         <section className="w-1/2 space-y-12 lg:space-y-24 flex flex-col justify-between">
           <div className="space-y-4">
             <h1 className="text-xl font-medium p-1 px-3 w-fit rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
-              {productDetails.categoryId}
+              {product.categoryId}
             </h1>
             <h1 className="text-5xl font-semibold">
-              {productDetails.productName}
+              {product.productName}
             </h1>
             <div className="flex gap-1 text-lg font-medium">
               <h1>*****</h1>
@@ -66,10 +82,10 @@ export default function ProductDetails() {
               <h1>1 review</h1>
             </div>
             <h1 className="text-4xl font-semibold textclr">
-              ${productDetails.price}/kg
+              ${product.price}/kg
             </h1>
             <h1 className="text-lg font-normal text-wrap">
-              {productDetails.description}
+              {product.description}
             </h1>
           </div>
 

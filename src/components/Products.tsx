@@ -3,12 +3,14 @@ import { client } from "@/lib/client";
 import { setProduct } from "@/store/productSlice";
 import { RootState } from "@/store/store";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
 export default function Products() {
-  // const router = useRouter();
+  const fetched = useRef<boolean>(false)
+  const pathname = usePathname()
   const dispatch = useDispatch();
   const products = useSelector(
     (state: RootState) => state.productReducer.products
@@ -33,6 +35,8 @@ export default function Products() {
   // };
 
   useEffect(() => {
+    if (fetched.current) return;
+    fetched.current = true
     const handleProducts = async () => {
       try {
         const res = await client.get("/products");
@@ -47,32 +51,39 @@ export default function Products() {
 
   return (
     <main className="flex flex-col items-center space-y-8 bg-white px-[12px] lg:px-[120px]">
-      <section className="w-full flex flex-col items-center pt-36 space-y-4">
-        <h1 className="text-center text-sm md:text-xl self-center font-medium p-1 px-3 rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
-          Our Products
-        </h1>
-        <h1 className="text-center text-3xl md:text-5xl self-center font-medium ">
-          Our Fresh Products
-        </h1>
-        <h1 className="text-center text-[12px] md:text-sm self-center text-wrap font-normal w-1/2 md:w-1/4">
-          We pride ourselves on offering a wide variety of fresh and flavorful
-          fruits, vegetables, and salad ingredients.
-        </h1>
-        <div className="flex gap-6">
-          {categoryNavs.map((cat, i) => (
-            <div
-              key={i}
-              className={`${
-                i === 0
+      {pathname === '/' || pathname === '/product' ? (
+        <section className="w-full flex flex-col items-center pt-36 space-y-4">
+          <h1 className="text-center text-sm md:text-xl self-center font-medium p-1 px-3 rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
+            Our Products
+          </h1>
+          <h1 className="text-center text-3xl md:text-5xl self-center font-medium ">
+            Our Fresh Products
+          </h1>
+          <h1 className="text-center text-[12px] md:text-sm self-center text-wrap font-normal w-1/2 md:w-1/4">
+            We pride ourselves on offering a wide variety of fresh and flavorful
+            fruits, vegetables, and salad ingredients.
+          </h1>
+          <div className="flex gap-6">
+            {categoryNavs.map((cat, i) => (
+              <div
+                key={i}
+                className={`${i === 0
                   ? "bg-[#749B3F] text-white"
                   : "text-[#a6a6a6] border-[1px] border-[#d9d9d9]"
-              } px-6 py-3 rounded-lg`}
-            >
-              {cat}
-            </div>
-          ))}
-        </div>
-      </section>
+                  } px-6 py-3 rounded-lg`}
+              >
+                {cat}
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="w-full flex flex-col items-center pt-36 space-y-4">
+          <h1 className="text-center text-sm md:text-xl self-center font-medium p-1 px-3 rounded-lg bg-[#749B3F]/10 text-[#749B3F]">
+            Related Products
+          </h1>
+        </section>
+      )}
       <section className="flex justify-center w-full">
         <section className="grid grid-cols-4 gap-6 justify-center">
           {products.length > 0 ? (
@@ -110,7 +121,7 @@ export default function Products() {
       </section>
 
       <Link
-        href="/products"
+        href="/product"
         className="px-8 py-4 text-lg font-semibold rounded-lg border-[1px] border-[#ff6a1a] max-w-fit"
       >
         See All Products

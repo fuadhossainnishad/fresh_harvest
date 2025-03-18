@@ -7,7 +7,7 @@ export const dummydata = [
     description: "Juicy red apples straight from the farm.",
     price: 2.5,
     stock: 100,
-    images: ["/images/veg.png"],
+    images: ["/images/veg3.png","/images/veg.png","/images/veg2.png"],
     categoryId: "Fruits",
     isDeleted: false,
     createdAt: new Date("2025-03-01T10:00:00Z"),
@@ -19,7 +19,7 @@ export const dummydata = [
     description: "Crunchy carrots, perfect for salads and snacks.",
     price: 1.8,
     stock: 150,
-    images: ["/images/veg2.png"],
+    images: ["/images/veg3.png","/images/veg.png","/images/veg2.png"],
     categoryId: "Vegetables",
     isDeleted: false,
     createdAt: new Date("2025-03-05T10:00:00Z"),
@@ -31,7 +31,7 @@ export const dummydata = [
     description: "A fresh mix of organic greens for your perfect salad.",
     price: 4.0,
     stock: 50,
-    images: ["/images/veg3.png"],
+    images: ["/images/veg3.png","/images/veg.png","/images/veg2.png"],
     categoryId: "Salad",
     isDeleted: false,
     createdAt: new Date("2025-03-10T10:00:00Z"),
@@ -123,30 +123,31 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     setProduct: (state, action: PayloadAction<ProductsInterface[]>) => {
-      state.products = action.payload;
+      state.products = [...state.products, ...action.payload];
     },
-    addProduct: (state, action: PayloadAction<ProductsInterface>) => {
-      state.products.push(action.payload);
-    },
-    updateProduct: (state, action: PayloadAction<ProductsInterface>) => {
-      const index = state.products.findIndex(
-        (products) => products.id === action.payload.id
-      );
-      if (index !== -1) {
-        state.products[index] = { ...state.products[index], ...action.payload };
-      }
-    },
-    deleteProduct: (state, action: PayloadAction<string>) => {
-      const index = state.products.findIndex(
-        (product) => product.id === action.payload
-      );
-      if (index !== -1) {
-        state.products[index].isDeleted = true;
-      }
-    },
+    
+    // addProduct: (state, action: PayloadAction<ProductsInterface>) => {
+    //   state.products.push(action.payload);
+    // },
+    // updateProduct: (state, action: PayloadAction<ProductsInterface>) => {
+    //   const index = state.products.findIndex(
+    //     (products) => products.id === action.payload.id
+    //   );
+    //   if (index !== -1) {
+    //     state.products[index] = { ...state.products[index], ...action.payload };
+    //   }
+    // },
+    // deleteProduct: (state, action: PayloadAction<string>) => {
+    //   const index = state.products.findIndex(
+    //     (product) => product.id === action.payload
+    //   );
+    //   if (index !== -1) {
+    //     state.products[index].isDeleted = true;
+    //   }
+    // },
   },
 });
 
-export const { setProduct, addProduct, updateProduct, deleteProduct } =
+export const { setProduct} =
   productsSlice.actions;
 export default productsSlice.reducer;
